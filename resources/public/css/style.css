@@ -1,0 +1,34 @@
+/*!
+ * Start Bootstrap - The Big Picture HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background: none;
+}
+
+h1, .white-text {
+    color: yellow;
+}
+
+.caption {
+text-align:center;
+}
+
+.thumbnail img { min-height:60px; height:60px; }
+.thumbnail:hover {
+cursor: pointer;
+}
+.full {
+  background: url(https://lh6.googleusercontent.com/-GXg9xdCmeKE/VA64omH9CfI/AAAAAAAAWHU/nomBrdJ3s4U/w743-h557-no/IMG_20140909_092505.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+
