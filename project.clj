@@ -5,14 +5,14 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.7.0-alpha2"]
-                 [org.clojure/clojurescript "0.0-2322"]
-                 [com.facebook/react "0.11.1"]
+                 [org.clojure/clojurescript "0.0-2342"]
+                 [com.facebook/react "0.11.2"]
                  [figwheel "0.1.4-SNAPSHOT"]
-                 [org.clojure/core.async "0.1.278.0-76b25b-alpha"]
+                 [org.clojure/core.async "0.1.338.0-5c5012-alpha"]
                  [sablono "0.2.22"]
                  [om "0.7.3"]
                  [org.danielsz/cljs-utils "0.1.0-SNAPSHOT"]
-                 [secretary "1.2.0"]
+                 [secretary "1.2.1"]
                  [kioo "0.4.0"]]
   
   :profiles {:dev {:dependencies [[http-kit "2.1.19"]

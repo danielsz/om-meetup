@@ -274,7 +274,7 @@
 (defn to-slug [name]
   (-> name
       (clojure.string/split #"\s")
-      (clojure.string/join)
+      (#(clojure.string/join "-" %))
       (clojure.string/lower-case)))
 
 (defn slugify [users]
@@ -348,5 +348,3 @@
                    (om/build user (some #(when (= (:slug %) view) %) (slugify (:users data))) {:key :name})))))))
 
 (om/root application app-state {:target (utils/by-id "om")})
-
-
