@@ -33,7 +33,9 @@
     :navigation [["Users" #(.setToken history "/users")]
                  ["About" #(.setToken history "/about")]]
     :welcome {:title "Clojure Israel"
-              :caption "RSVPed users for the next meetup (Hoplon)."} 
+              :caption "RSVPed users for the next meetup (Hoplon)."}
+    :about {:title "Demo"
+            :caption "This is a demo"}
     :view :root
     :users
     [{:link "http://www.meetup.com/members/10935314",
@@ -241,6 +243,9 @@
   (defroute "/" {:as params}
     (om/update! app-state :view :root))
 
+  (defroute "/about" {:as params}
+    (om/update! app-state :view :about))
+
   (defroute "/users" {:as params}
     (om/update! app-state :view :users))
   
@@ -306,12 +311,11 @@
       "user-thumbnail")
     om/IRender
     (render [_]
-      (html [:.col-sm-4.col-md-3
-             [:.thumbnail {:on-click (fn [e]
-                                       (.setToken history (user-path {:id (to-slug (:name @data))})))} 
-              [:img {:src (thumbnail data)}]
-              [:.caption
-               [:h5 (:name data)]]]]))))
+      (html [:.thumbnail {:on-click (fn [e]
+                                      (.setToken history (user-path {:id (to-slug (:name @data))})))} 
+             [:img {:src (thumbnail data)}]
+             [:.caption
+              [:h5 (:name data)]]]))))
 
 (defn users
   "Om component for new users"
@@ -322,7 +326,36 @@
       "users")
     om/IRender
     (render [_]
-      (html [:div.row.well (om/build-all user-thumbnail data {:key :name})]))))
+      (html [:div.row.well#users-container (om/build-all user-thumbnail data {:key :name})]))))
+
+
+(defn about
+  "Om component for new about"
+  [data owner]
+  (reify
+    om/IDisplayName
+    (display-name [this]
+      "about")
+    om/IRender
+    (render [_]
+      (html [:div.row
+             [:div.col-md-6.col-sm-12.well
+              [:h1 (:title (:about data))]
+              [:p (:caption (:about data))]]]))))
+
+(defn welcome
+  "Om component for new welcome"
+  [data owner]
+  (reify
+    om/IDisplayName
+    (display-name [this]
+      "welcome")
+    om/IRender
+    (render [_]
+      (html [:div.row
+             [:div.col-md-6.col-sm-12.jumbotron
+              [:h1 (:title (:welcome data))]
+              [:p (:caption (:welcome data))]]]))))
 
 (defn application
   "Om component for new application"
@@ -340,11 +373,9 @@
                (dom/div nil (my-header data))
                (let [view (:view data)]
                  (condp = view
-                   :root (html [:div.row
-                                [:div.col-md-6.col-sm-12.white-text
-                                 [:h1 (:title (:welcome data))]
-                                 [:p (:caption (:welcome data))]]])
+                   :root (om/build welcome data)
                    :users (om/build users (:users data) {:react-key "users"})
+                   :about (om/build about data)
                    (om/build user (some #(when (= (:slug %) view) %) (slugify (:users data))) {:key :name})))))))
 
 (om/root application app-state {:target (utils/by-id "om")})

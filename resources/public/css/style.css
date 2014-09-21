@@ -10,18 +10,28 @@ body {
 	background: none;
 }
 
-h1, .white-text {
-    color: yellow;
-}
 
 .caption {
 text-align:center;
 }
 
-.thumbnail img { min-height:60px; height:60px; }
-.thumbnail:hover {
+
+.thumbnail {
+margin:5px;
 cursor: pointer;
+flex-grow: 0;
+flex-shrink: 0;
+flex-basis: 10em;
 }
+
+#users-container {
+display: flex;
+flex-wrap: wrap;
+justify-content: flex-start;
+}
+
+.thumbnail img { min-height:60px; height:60px; }
+
 .full {
   background: url(https://lh6.googleusercontent.com/-GXg9xdCmeKE/VA64omH9CfI/AAAAAAAAWHU/nomBrdJ3s4U/w743-h557-no/IMG_20140909_092505.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
