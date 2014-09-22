@@ -27,5 +27,6 @@
         topics (map #(map :name %)(map :topics users))
         users (map #(select-keys % [:name :id :bio :photo :city :link]) users)
         coll (partition 2 (interleave users topics))]
-    {:users (for [x coll]
-              (assoc (first x) :topics (into [] (last x))))}))
+    {:users (vec (for [x coll]
+                   (assoc (first x) :topics (into [] (last x)))))}))
+
