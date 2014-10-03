@@ -22,7 +22,7 @@
         results (doall (map deref futures))]
     (sequence results-xform results)))
 
-(defn app-state [] 
+(def app-state 
   (let [users (users)
         topics (map #(map :name %)(map :topics users))
         users (map #(select-keys % [:name :id :bio :photo :city :link]) users)

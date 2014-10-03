@@ -18,14 +18,14 @@
   :profiles {:dev {:dependencies [[http-kit "2.1.19"]
                                   [org.clojure/tools.trace "0.7.8"]
                                   [environ "1.0.0"]]
-                   :source-paths ["dev"]}}
+                   :source-paths ["dev/clj"]}}
 
   :plugins [[lein-cljsbuild "1.0.3"]
             [lein-figwheel "0.1.4-SNAPSHOT"]]
   
   :cljsbuild {
     :builds [{:id "dev"
-              :source-paths ["src" "dev"]
+              :source-paths ["src" "dev/cljs"]
               :compiler {:output-to "resources/public/js/compiled/meetup.js"
                          :output-dir "resources/public/js/compiled/out"
                          :optimizations :none
