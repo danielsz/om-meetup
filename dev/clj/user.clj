@@ -5,26 +5,21 @@
 
 (def base-url "http://api.meetup.com/2")
 
-(def results-xform
-  (map (comp 
-        #(json/read-str % :key-fn keyword) 
-        :body)))
-
-(defn rsvped-users []
+(def rsvped-users
   (let [rsvp-url (str base-url "/rsvps?event_id=200987152&order=name&key=" (:api-key env))]
-    (->> [@(http/get rsvp-url)]
-         (into {} results-xform)                     
-         (:results))))
+    (-> @(http/get rsvp-url)
+        (:body)
+        (json/read-str :key-fn keyword)
+        (:results))))
 
-(defn users [] 
-  (let [urls (map #(str base-url "/member/" (:member_id (:member %)) "?key=" (:api-key env)) (rsvped-users))
+(def users
+  (let [urls (map #(str base-url "/member/" (:member_id (:member %)) "?key=" (:api-key env)) rsvped-users)
         futures (doall (map http/get urls))
         results (doall (map deref futures))]
-    (sequence results-xform results)))
+    (map (comp #(json/read-str % :key-fn keyword) :body) results)))
 
-(def app-state 
-  (let [users (users)
-        topics (map #(map :name %)(map :topics users))
+(defn app-state [users] 
+  (let [topics (map #(map :name %)(map :topics users))
         users (map #(select-keys % [:name :id :bio :photo :city :link]) users)
         coll (partition 2 (interleave users topics))]
     {:users (vec (for [x coll]
