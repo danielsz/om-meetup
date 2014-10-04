@@ -17,7 +17,8 @@
   
   :profiles {:dev {:dependencies [[http-kit "2.1.19"]
                                   [org.clojure/tools.trace "0.7.8"]
-                                  [environ "1.0.0"]]
+                                  [environ "1.0.0"]
+                                  [com.taoensso/timbre "3.3.1"]]
                    :source-paths ["dev/clj"]}}
 
   :plugins [[lein-cljsbuild "1.0.3"]

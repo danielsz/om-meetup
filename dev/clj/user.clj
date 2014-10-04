@@ -1,7 +1,10 @@
 (ns user
   (:require [clojure.data.json :as json]
             [org.httpkit.client :as http]
-            [environ.core :refer [env]]))
+            [environ.core :refer [env]]
+            [taoensso.timbre :as timbre]))
+
+(timbre/refer-timbre)
 
 (def base-url "http://api.meetup.com/2")
 
