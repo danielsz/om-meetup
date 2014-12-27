@@ -3,7 +3,7 @@
    [meetup.users :refer [users]]
    [om.core :as om :include-macros true]
    [om.dom :as dom :include-macros true]
-   [secretary.core :as secretary :include-macros true :refer [defroute]]
+   [secretary.core :as secretary :refer-macros [defroute]]
    [cljs-utils.core :as utils]
    [cljs.core.async :as async :refer [<! >! put! take! chan]]
    [kioo.om :refer [html content set-attr do-> substitute listen add-class set-class]]
