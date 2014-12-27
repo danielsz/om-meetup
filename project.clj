@@ -6,11 +6,10 @@
 
   :dependencies [[org.clojure/clojure "1.7.0-alpha2"]
                  [org.clojure/clojurescript "0.0-2511"]
-                 [com.facebook/react "0.11.2"]
                  [figwheel "0.2.0-SNAPSHOT"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [sablono "0.2.22"]
-                 [om "0.7.3"]
+                 [om "0.8.0-beta5"]
                  [org.danielsz/cljs-utils "0.1.0-SNAPSHOT"]
                  [secretary "1.2.1"]
                  [kioo "0.4.0"]]

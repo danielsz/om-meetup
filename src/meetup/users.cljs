@@ -1,6 +1,6 @@
 (ns meetup.users)
 
-(def users 
+(def users-state 
   [{:topics
    ["Scala"
     "Functional Programming"

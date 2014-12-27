@@ -1,6 +1,6 @@
 (ns meetup.core                         
   (:require 
-   [meetup.users :refer [users]]
+   [meetup.users :refer [users-state]]
    [om.core :as om :include-macros true]
    [om.dom :as dom :include-macros true]
    [secretary.core :as secretary :refer-macros [defroute]]
@@ -30,15 +30,15 @@
 
 (defonce app-state 
   (atom
-   {:brand ["CUG Tel-Aviv" #(.setToken history "/")]
+   {:brand ["FOSS Tel-Aviv" #(.setToken history "/")]
     :navigation [["Users" #(.setToken history "/users")]
                  ["About" #(.setToken history "/about")]]
-    :welcome {:title "Clojure Israel"
-              :caption "RSVPed users for the next meetup (Hoplon)."}
+    :welcome {:title "FOSS Israel"
+              :caption "Open Source & Free Software in Israel."}
     :about {:title "Demo"
             :caption "This is a demo"}
     :view :root
-    :users users}))
+    :users users-state}))
 
 (defn define-routes [app-state]
   
